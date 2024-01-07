@@ -882,8 +882,8 @@ Device::BuiltinAction start_recovery(Device* device, const std::vector<std::stri
 
   // Extract the YYYYMMDD / YYYYMMDD-HHMM timestamp from the full version string.
   // Assume the first instance of "-[0-9]{8}", or "-[0-9]{8}-[0-9]{4}"
-  // In case DERP_VERSION_APPEND_TIME_OF_DAY is set to true, time is also matched.
-  std::string ver = android::base::GetProperty("ro.derp.version", "");
+  // In case REDBIRD_VERSION_APPEND_TIME_OF_DAY is set to true, time is also matched.
+  std::string ver = android::base::GetProperty("ro.redbird.version", "");
   std::regex pattern("-(\\d{8}(-\\d{4})?)");
   std::smatch ver_date_match;
   std::string ver_date = "";
@@ -896,7 +896,7 @@ Device::BuiltinAction start_recovery(Device* device, const std::vector<std::stri
   }
 
   std::vector<std::string> title_lines = {
-    "Version " + android::base::GetProperty("ro.derp.build.version", "(unknown)") +
+    "Version " + android::base::GetProperty("ro.redbird.build.version", "(unknown)") +
         " (" + ver_date + ")",
   };
   if (android::base::GetBoolProperty("ro.build.ab_update", false)) {
